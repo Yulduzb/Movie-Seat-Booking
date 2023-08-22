@@ -10,22 +10,25 @@ const movieOptions={
     "320":"images/img2.jpg",
     "250":"images/img3.jpg",
     "260":"images/img4.jpg",
-    "270":"images/img5.jpg"
-
-    
+    "270":"images/img5.jpg" 
     
 };
-
 
 populateUI();
 
 let ticketPrice=movieSelect.nodeValue;
 
+
+//Bu kod parçası, kullanıcının seçtiği film bilgisini ve bilet fiyatını yerel
+// depolamada saklamak için kullanılır. İşte bu kod parçasının adım adım açıklaması:
 const setMovieData = (movieIndex,moviePrice) =>{
     localStorage.setItem("selectedMovieIndex",movieIndex);
     localStorage.setItem("selectedMoviePrice",moviePrice);
 }
 
+
+
+//Bu kod parçası, kullanıcının seçtiği koltukları güncelleyerek sayfa üzerindeki bilgileri günceller ve seçimleri depolar.
 const updateSelectedCount = () => {
     const selectedSeats=document.querySelectorAll(".row .seat.selected");
     
@@ -41,6 +44,9 @@ const updateSelectedCount = () => {
     setMovieData(movieSelect.selectedIndex,movieSelect.value);
 }
 
+
+// bu fonksiyon, kullanıcının daha önce seçtiği koltukları işaretler ve seçtiği filmi geri yükler,
+// böylece kullanıcı tekrar uygulamayı açtığında veya sayfa yenilendiğinde tercihlerini görebilir.
 function populateUI(){
     const selectedSeats=JSON.parse(localStorage.getItem('selectedSeats'));
 
@@ -60,6 +66,9 @@ function populateUI(){
 }
 
 
+
+//Bu kod parçası, kullanıcının film seçimi değiştikçe resmi ve 
+//bilet fiyatını güncellemeyi, aynı zamanda verileri depolamayı ve koltuk seçimlerini güncellemeyi sağlar.
 movieSelect.addEventListener('change', e =>{
     const selectedMovie=movieSelect.value;
   
@@ -72,6 +81,10 @@ movieSelect.addEventListener('change', e =>{
 
 });
 
+
+
+//Bu kod parçası, kullanıcının koltukları seçip seçmediğini kontrol eder ve seçtiği koltukları işaretler veya işareti kaldırır. 
+//Aynı zamanda, seçimlerin sayısını ve bilet fiyatını güncellemek için updateSelectedCount fonksiyonunu çağırır.
 
 container.addEventListener("click", e => {
 
